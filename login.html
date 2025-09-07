@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Login | HMS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #eafaf1; /* light green background */
+    }
+
+    .container {
+      display: flex;
+      width: 900px;
+      height: 550px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      background: #fff;
+    }
+
+    /* Left section with image */
+    .left {
+      flex: 1;
+      background: #d1f7e6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .left img {
+      width: 90%;
+      max-width: 380px;
+    }
+
+    .left h1 {
+      margin-top: 15px;
+      font-size: 26px;
+      color: #2ecc71;
+    }
+
+    /* Right section login form */
+    .right {
+      flex: 1;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 350px;
+    }
+
+    .login-container h2 {
+      margin-bottom: 1rem;
+      color: #2ecc71;
+      text-align: center;
+    }
+
+    .input-group {
+      margin: 15px 0;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .input-group input,
+    .input-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+      transition: 0.3s;
+    }
+
+    .input-group input:focus,
+    .input-group select:focus {
+      border-color: #27ae60;
+    }
+
+    .login-btn {
+      background: #2ecc71;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      width: 100%;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #27ae60;
+    }
+
+    .links {
+      margin-top: 15px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .links a {
+      color: #2ecc71;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Left section with illustration -->
+    <div class="left">
+      <img src="https://img.freepik.com/free-vector/doctor-character-background_1270-84.jpg" alt="Doctor Illustration">
+      <h1>Welcome Back!</h1>
+      <p>Please enter your details to continue</p>
+    </div>
+
+    <!-- Right section with login form -->
+    <div class="right">
+      <div class="login-container">
+        <h2>Hospital Login</h2>
+        <form>
+          <div class="input-group">
+            <label for="role">Select Role</label>
+            <select id="role" required>
+              <option value="">-- Choose Role --</option>
+              <option value="patient">Patient</option>
+              <option value="doctor">Doctor</option>
+              <option value="receptionist">Receptionist</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" placeholder="Enter your password" required>
+          </div>
+
+          <button type="submit" class="login-btn">Log In</button>
+        </form>
+
+        <div class="links">
+          <a href="#">Forgot Password?</a> | 
+          <a href="#">Create Account</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
