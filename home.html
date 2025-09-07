@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hospital Management System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f9fdf9;
+      color: #333;
+      transition: margin-left 0.3s ease-in-out;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      background-color: #2ecc71;
+      overflow-x: hidden;
+      transition: all 0.4s ease-in-out;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar a {
+      padding: 15px 25px;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      display: block;
+      transition: all 0.3s ease-in-out;
+      transform: translateX(-20px);
+      opacity: 0;
+      animation: fadeInRight 0.6s forwards;
+    }
+
+    .sidebar a:hover {
+      background: #27ae60;
+      transform: translateX(5px);
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    /* Logout button */
+    .sidebar .logout-btn {
+      margin-top: auto;
+      background: #f9f7f7;
+      text-align: center;
+      border-radius: 8px;
+      width: 114px;
+      font-weight: 600;
+      color:#3a3434;   
+      transition: all 0.3s ease-in-out;
+    }
+
+    .sidebar .logout-btn:hover {
+      background: #76a3ec;
+      transform: scale(1.05);
+    }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #2ecc71;
+      color: white;
+      padding: 15px 30px;
+      flex-wrap: nowrap;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .navbar h1 {
+      cursor: pointer;
+      font-size: 24px;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar h1:hover {
+      transform: scale(1.05);
+    }
+
+    /* Search bar */
+    .search-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-container input[type="text"] {
+      padding: 7px 10px 7px 35px;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .search-container input[type="text"]:focus {
+      box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+      transform: scale(1.03);
+    }
+
+    .search-container .search-btn {
+      position: absolute;
+      left: 8px;
+      background: none;
+      border: none;
+      color: #333;
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .search-container .search-btn:hover {
+      transform: scale(1.2);
+    }
+
+    .main-content {
+      padding: 40px;
+      transition: margin-left 0.3s ease-in-out;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #2ecc71, #a8e6cf);
+      color: white;
+      text-align: center;
+      padding: 80px 20px;
+      border-radius: 10px;
+      animation: fadeInUp 1s ease;
+    }
+
+    .hero h2 {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+    }
+
+    /* Quick links */
+    .quick-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+
+    .quick-links a {
+      background: #2ecc71;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease-in-out;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .quick-links a:hover {
+      background: #27ae60;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    section {
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    section h3 {
+      color: #2ecc71;
+      font-size: 40px;
+      text-align: center;
+      animation: fadeInDown 1s ease;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-size: 16px;
+      transition: all 0.3s ease-in-out;
+      animation: fadeInUp 1s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      background: #2ecc71;
+      color: white;
+      text-align: center;;
+      padding: 15px;
+      margin-top: 40px;
+      border-radius: 10px;
+      animation: fadeInUp 1s ease;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @media screen and (max-width: 768px) {
+      .quick-links {
+        flex-direction: column;
+        align-items: center;
+      }
+      .navbar {
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .search-container input[type="text"] {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div id="mySidebar" class="sidebar">
+    <span class="closebtn" onclick="closeNav()">&times;</span>
+    <a href="#">Home</a>
+    <a href="appointment.html">Appointment</a>
+    <a href="reports.html">Reports</a>
+    <a href="advice.html">Advice</a>
+    <a href="about.html">About Us</a>
+    <a href="contact.html">Contact / Help Us</a>
+    <a href="logout.html" class="logout-btn">Logout</a>
+  </div>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <h1 onclick="openNav()">🏥 MyCare Hospital</h1>
+    <div class="search-container">
+      <input type="text" placeholder="Search...">
+      <button class="search-btn">&#128269;</button>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="main-content" id="main">
+    <!-- Hero Banner -->
+    <section class="hero">
+      <h2>Welcome to 🏥 MyCare Hospital</h2>
+      <p>"Caring for You, Always" | Emergency Helpline: <b>+91 12345 67890</b></p>
+    </section>
+
+    <!-- Quick Links -->
+    <div class="quick-links">
+      <a href="appointment.html">Book Appointment</a>
+      <a href="contact.html">Contact Doctor</a>
+      <a href="reports.html">Lab Reports</a>
+      <a href="pharmacy.html">Pharmacy</a>
+    </div>
+
+    <!-- Our Services Section -->
+    <section id="services">
+      <h3>Our Services</h3>
+      <div class="services">
+        <div class="service-card">🏥 OPD (Outpatient Department)</div>
+        <div class="service-card">🩺 Surgery & Operation Theatres</div>
+        <div class="service-card">💊 Pharmacy</div>
+        <div class="service-card">🔬 Diagnostics & Lab Tests</div>
+        <div class="service-card">🚑 Emergency & Trauma Care</div>
+        <div class="service-card">👶 Pediatrics & Neonatal Care</div>
+        <div class="service-card">❤️ Cardiology & Heart Care</div>
+        <div class="service-card">🏋️‍♂️ Physiotherapy & Rehabilitation</div>
+        <div class="service-card">🩻 Radiology & Imaging Services</div>
+        <div class="service-card">💻 Telemedicine / Online Consultation</div>
+        <div class="service-card">🧠 Mental Health & Counseling</div>
+        <div class="service-card">🥼 Specialized Clinics (Diabetes, ENT, Eye Care)</div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 LOGO Hospital. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginLeft = "0";
+    }
+  </script>
+
+</body>
+</html>

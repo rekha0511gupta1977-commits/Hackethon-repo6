@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment | LOGO Hospital</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f9fdf9;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      color: #2ecc71;
+      margin: 30px 0;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .appointment-container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      animation: fadeInUp 1s ease-in-out;
+      transition: all 0.4s ease-in-out;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin: 15px 0 5px;
+      transition: all 0.3s ease;
+    }
+
+    select, input[type="date"] {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+      transition: all 0.4s ease-in-out;
+    }
+
+    /* ✅ Date picker & select animation */
+    select:focus, input[type="date"]:focus {
+      border-color: #2ecc71;
+      box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+      transform: scale(1.02);
+    }
+
+    .time-slots {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .time-slot {
+      padding: 10px;
+      text-align: center;
+      background: #2ecc71;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      animation: fadeIn 0.8s ease;
+    }
+
+    .time-slot:hover {
+      background: #27ae60;
+      transform: scale(1.05);
+    }
+
+    .time-slot.selected {
+      background: #27ae60;
+      font-weight: 600;
+      transform: scale(1.1);
+    }
+
+    .confirm-card {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background: #dff7df;
+      border-left: 6px solid #2ecc71;
+      border-radius: 6px;
+      font-size: 16px;
+      animation: fadeInUp 1s ease;
+      transition: all 0.5s ease-in-out;
+    }
+
+    /* ✅ Animated Green Box Button */
+    .book-btn {
+      margin-top: 20px;
+      width: 100%;
+      padding: 15px 0;
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      text-align: center;
+    }
+
+    .book-btn:hover {
+      background-color: #27ae60;
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* ✨ Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Book Your Appointment</h2>
+  <div class="appointment-container">
+    
+    <!-- Select Doctor -->
+    <label for="doctor">Choose Doctor:</label>
+    <select id="doctor">
+      <option value="" disabled selected>Select a Doctor</option>
+      <option value="Dr. A Sharma">Dr. A Sharma - Cardiology</option>
+      <option value="Dr. B Mehta">Dr. B Mehta - Pediatrics</option>
+      <option value="Dr. C Roy">Dr. C Roy - Neurology</option>
+      <option value="Dr. D Singh">Dr. D Singh - Orthopedics</option>
+    </select>
+
+    <!-- Select Date -->
+    <label for="date">Select Date:</label>
+    <input type="date" id="date">
+
+    <!-- Select Time Slot -->
+    <label>Select Time Slot:</label>
+    <div class="time-slots" id="timeSlots">
+      <div class="time-slot">09:00 AM</div>
+      <div class="time-slot">10:00 AM</div>
+      <div class="time-slot">11:00 AM</div>
+      <div class="time-slot">12:00 PM</div>
+      <div class="time-slot">02:00 PM</div>
+      <div class="time-slot">03:00 PM</div>
+      <div class="time-slot">04:00 PM</div>
+      <div class="time-slot">05:00 PM</div>
+    </div>
+
+    <!-- ✅ Animated Green Box Button -->
+    <button class="book-btn" onclick="bookAppointment()">Confirm Appointment</button>
+
+    <!-- Booking Confirmation -->
+    <div class="confirm-card" id="confirmCard"></div>
+  </div>
+
+  <script>
+    // Time slot selection
+    const slots = document.querySelectorAll('.time-slot');
+    let selectedSlot = '';
+    slots.forEach(slot => {
+      slot.addEventListener('click', () => {
+        slots.forEach(s => s.classList.remove('selected'));
+        slot.classList.add('selected');
+        selectedSlot = slot.textContent;
+      });
+    });
+
+    // Booking confirmation
+    function bookAppointment() {
+      const doctor = document.getElementById('doctor').value;
+      const date = document.getElementById('date').value;
+
+      if(!doctor || !date || !selectedSlot) {
+        alert("Please select doctor, date, and time slot.");
+        return;
+      }
+
+      const confirmCard = document.getElementById('confirmCard');
+      confirmCard.style.display = 'block';
+      confirmCard.innerHTML = `
+        ✅ Your appointment is confirmed!<br>
+        <b>Doctor:</b> ${doctor}<br>
+        <b>Date:</b> ${date}<br>
+        <b>Time:</b> ${selectedSlot}
+      `;
+    }
+  </script>
+
+</body>
+</html>

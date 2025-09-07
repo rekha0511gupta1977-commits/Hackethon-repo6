@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - MyCare Hospital</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f9fdf9;
+      font-family: 'Poppins', sans-serif;
+    }
+    .navbar {
+      background: #27ae60 !important;
+    }
+    .navbar-brand {
+      font-weight: 600;
+      animation: fadeInDown 1s ease-in-out;
+    }
+    .hero {
+      text-align: center;
+      padding: 60px 20px;
+      background: linear-gradient(rgba(39, 174, 96, 0.8), rgba(39, 174, 96, 0.8)), url('https://img.freepik.com/free-photo/modern-hospital-building_1127-3562.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      border-radius: 0 0 20px 20px;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+    .section {
+      padding: 50px 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      animation: slideUp 1s ease forwards;
+    }
+    .section:nth-child(2) { animation-delay: 0.3s; }
+    .section:nth-child(3) { animation-delay: 0.6s; }
+    .section:nth-child(4) { animation-delay: 0.9s; }
+    h2 {
+      color: #27ae60;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .card-about {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+      transition: 0.3s;
+    }
+    .card-about:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">🏥 MyCare Hospital</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>About MyCare Hospital</h1>
+    <p>Compassion. Care. Commitment.</p>
+  </div>
+
+  <!-- About Content -->
+  <div class="container">
+
+    <div class="section">
+      <h2>🌟 Who We Are</h2>
+      <div class="card-about">
+        <p>MyCare Hospital is a multi-specialty healthcare institution dedicated to delivering world-class medical services. With state-of-the-art infrastructure, advanced technology, and a compassionate team, we strive to provide the best care to every patient.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>🎯 Our Mission</h2>
+      <div class="card-about">
+        <p>To provide affordable, accessible, and high-quality healthcare with empathy and respect. We aim to empower patients through personalized treatment and preventive care.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>👁️ Our Vision</h2>
+      <div class="card-about">
+        <p>To be recognized as a leading healthcare provider in the region, ensuring holistic wellness through innovation, integrity, and excellence in medical services.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>💚 Our Specialties</h2>
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <div class="card-about">
+            <h5>🫀 Cardiology</h5>
+            <p>Advanced cardiac treatments, diagnostics, and surgeries by expert cardiologists.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card-about">
+            <h5>🧠 Neurology</h5>
+            <p>Comprehensive care for neurological disorders with cutting-edge treatments.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card-about">
+            <h5>🦴 Orthopedics</h5>
+            <p>Specialized bone and joint care, including surgeries and rehabilitation.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card-about">
+            <h5>👩‍⚕️ Pediatrics</h5>
+            <p>Dedicated child healthcare services with compassion and expertise.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card-about">
+            <h5>🧪 Diagnostics</h5>
+            <p>World-class diagnostic labs with accurate and quick test results.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-3">
+          <div class="card-about">
+            <h5>🏥 Emergency Care</h5>
+            <p>24/7 emergency services with rapid response and critical care units.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
